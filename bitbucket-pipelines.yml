@@ -1,0 +1,22 @@
+#  Template python-build
+
+#  This template allows you to validate your python code.
+#  The workflow allows running tests and code linting on the default branch.
+
+image: python:3.8
+
+pipelines:
+  default:
+    - parallel:
+      - step:
+          name: Lint code
+          script:
+            # Enforce style consistency across Python projects https://flake8.pycqa.org/en/latest/manpage.html
+            - pip install flake8
+            - flake8 . --extend-exclude=dist,build --show-source --statistics
+      - step:
+          name: ThreatScan
+          services: [docker]
+          script:
+            - docker run -v $(pwd):/app -e THREATRIX_OID=a4d2ca7c-5114-4441-87bc-0a9ec5874750 -e THREATRIX_EID=382b2b96-ba68-4571-b8aa-5550f338bb02 -e THREATRIX_API_KEY=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvcmctdXNlcm5hbWUiLCJpc3MiOiJhNGQyY2E3Yy01MTE0LTQ0NDEtODdiYy0wYTllYzU4NzQ3NTAiLCJleHAiOjE2NTE1OTUwNzEsImlhdCI6MTYzNTk1NjY3MX0.QvUqZVUDLslm_N2asX5KzJ2W6QxcYWMx3XWwrikxbG8 threatrix/threatrix-scan
+            
