@@ -18,5 +18,10 @@ pipelines:
           name: ThreatScan
           services: [docker]
           script:
-            - docker run -v $(pwd):/app -e THREATRIX_OID=a4d2ca7c-5114-4441-87bc-0a9ec5874750 -e THREATRIX_EID=382b2b96-ba68-4571-b8aa-5550f338bb02 -e THREATRIX_API_KEY=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvcmctdXNlcm5hbWUiLCJpc3MiOiJhNGQyY2E3Yy01MTE0LTQ0NDEtODdiYy0wYTllYzU4NzQ3NTAiLCJleHAiOjE2NTE1OTUwNzEsImlhdCI6MTYzNTk1NjY3MX0.QvUqZVUDLslm_N2asX5KzJ2W6QxcYWMx3XWwrikxbG8 threatrix/threatrix-scan
+            - >
+              docker run -v $(pwd):/app 
+              -e THREATRIX_OID=1fdc7fa7-a941-44f0-9457-3c439767880e
+              -e THREATRIX_EID=1f42ff82-04ba-4833-b1be-0df04e71fa29
+              -e THREATRIX_API_KEY=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvcmctdXNlcm5hbWUiLCJpc3MiOiIxZmRjN2ZhNy1hOTQxLTQ0ZjAtOTQ1Ny0zYzQzOTc2Nzg4MGUiLCJleHAiOjE2NTE5Njg3MjgsImlhdCI6MTYzNjMzMDMyOH0.6w3O22ZUrKqKrw91iIhlEp0hTcvH_WfdHZBPooam2ek
+              threatrix/threatrix-scan
             
